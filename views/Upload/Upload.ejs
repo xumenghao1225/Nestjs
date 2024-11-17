@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Upload</title>
+  <meta  />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/element-plus@2.8.8/dist/index.css" />
+  <script src="https://unpkg.com/vue@3.5.13/dist/vue.global.prod.js"></script>
+  <!-- import CSS -->
+  <script src="https://unpkg.com/element-plus@2.8.8/dist/index.full.js"></script>
+
+  <script src="https://unpkg.com/@element-plus/icons-vue@2.3.1"></script>
+
+  <!-- import JavaScript -->
+  <title>Element Plus demo</title>
+</head>
+<body>
+<div id="app">
+  <el-button type="primary" size="small" onClick="ClickFn"  icon="Edit">{{ message }}</el-button>
+  <el-upload
+          class="upload-demo"
+          drag
+          action="http://localhost:3000/upload/uploadImage"
+          multiple
+  >
+    <el-icon class="el-icon--upload"><UploadFilled /></el-icon>
+    <div class="el-upload__text">
+      Drop file here or <em>click to upload</em>
+    </div>
+    <template #tip>
+      <div class="el-upload__tip">
+        jpg/png files with a size less than 500kb
+      </div>
+    </template>
+  </el-upload>
+</div>
+<script defer>
+  const App = {
+    data() {
+      return {
+        message: "Hello Element Plus",
+      };
+    },
+  };
+  const app = Vue.createApp(App);
+  app.use(ElementPlus);
+  app.mount("#app");
+
+  for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+    console.log(key, component);
+    app.component(key, component)
+  }
+console.log(app)
+   function ClickFn () {
+    console.log("Hello Vue");
+  }
+</script>
+</body>
+</html>
